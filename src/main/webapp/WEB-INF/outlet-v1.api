@@ -1,0 +1,203 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://project-two-ibenefit.appspot.com/_ah/api",
+  "name" : "outlet",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://project-two-ibenefit.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "methods" : {
+    "outlet.outletApi.getOutlet" : {
+      "path" : "outletcollection/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "25441603800-nkunpqqs0h8ce43vkgtbeqvajeesi5av.apps.googleusercontent.com" ],
+      "clientIds" : [ "25441603800-nkunpqqs0h8ce43vkgtbeqvajeesi5av.apps.googleusercontent.com", "replace this with your Android client ID", "replace this with your iOS client ID" ],
+      "rosyMethod" : "com.iggie.ibenefitendpoints.OutletApi.getOutlet",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int32",
+            "required" : true
+          },
+          "key" : {
+            "type" : "string",
+            "required" : false,
+            "default" : ""
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "outlet.outletApi.saveOutlet" : {
+      "path" : "saveOutlet/{merchantId}/{outletId}/{name}/{placeId}/{id}",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "25441603800-nkunpqqs0h8ce43vkgtbeqvajeesi5av.apps.googleusercontent.com" ],
+      "clientIds" : [ "25441603800-nkunpqqs0h8ce43vkgtbeqvajeesi5av.apps.googleusercontent.com", "replace this with your Android client ID", "replace this with your iOS client ID" ],
+      "rosyMethod" : "com.iggie.ibenefitendpoints.OutletApi.saveOutlet",
+      "request" : {
+        "parameters" : {
+          "merchantId" : {
+            "type" : "int32",
+            "required" : true
+          },
+          "outletId" : {
+            "type" : "int32",
+            "required" : true
+          },
+          "name" : {
+            "type" : "string",
+            "required" : true
+          },
+          "placeId" : {
+            "type" : "string",
+            "required" : true
+          },
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "outlet.outletApi.listOutlet" : {
+      "path" : "outlet",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "25441603800-nkunpqqs0h8ce43vkgtbeqvajeesi5av.apps.googleusercontent.com" ],
+      "clientIds" : [ "25441603800-nkunpqqs0h8ce43vkgtbeqvajeesi5av.apps.googleusercontent.com", "replace this with your Android client ID", "replace this with your iOS client ID" ],
+      "rosyMethod" : "com.iggie.ibenefitendpoints.OutletApi.listOutlet",
+      "request" : {
+        "parameters" : {
+          "key" : {
+            "type" : "string",
+            "required" : false,
+            "default" : ""
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Outlet" : {
+        "id" : "Outlet",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "$ref" : "Key"
+          },
+          "version" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "merchantId" : {
+            "type" : "integer"
+          },
+          "outletId" : {
+            "type" : "integer"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "placeId" : {
+            "type" : "string"
+          },
+          "createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        }
+      },
+      "Key" : {
+        "id" : "Key",
+        "type" : "object",
+        "properties" : {
+          "kind" : {
+            "type" : "string"
+          },
+          "appId" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "parent" : {
+            "$ref" : "Key"
+          },
+          "complete" : {
+            "type" : "boolean"
+          },
+          "namespace" : {
+            "type" : "string"
+          }
+        }
+      },
+      "OutletCollection" : {
+        "id" : "OutletCollection",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Outlet"
+            }
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.iggie.ibenefitendpoints.OutletApi.getOutlet" : {
+        "response" : {
+          "$ref" : "OutletCollection"
+        }
+      },
+      "com.iggie.ibenefitendpoints.OutletApi.saveOutlet" : {
+        "response" : {
+          "$ref" : "Outlet"
+        }
+      },
+      "com.iggie.ibenefitendpoints.OutletApi.listOutlet" : {
+        "response" : {
+          "$ref" : "OutletCollection"
+        }
+      }
+    }
+  }
+}
